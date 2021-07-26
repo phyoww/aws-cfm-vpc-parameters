@@ -75,7 +75,7 @@ Mappings:
       "tkoaz2": "ap-northeast-1c"
       "tkoaz3": "ap-northeast-1d"
 Resources:
-  kumoribayMasterVpc1:
+  cloudideastarMasterVpc1:
     Type: AWS::EC2::VPC
     Properties:
       CidrBlock: !Ref VPCCIDR
@@ -104,7 +104,7 @@ Resources:
             - - "vpc"
               - !FindInMap [RegionMap, !Ref RegionCode, !Ref AZ1Code]
               - "subnet"
-      VpcId: !Ref kumoribayMasterVpc1
+      VpcId: !Ref cloudideastarMasterVpc1
   vpc1publicSubnet2:
     Type: AWS::EC2::Subnet
     Properties:
@@ -121,7 +121,7 @@ Resources:
             - - "vpc"
               - !FindInMap [RegionMap, !Ref RegionCode, !Ref AZ1Code]
               - "subnet"
-      VpcId: !Ref kumoribayMasterVpc1
+      VpcId: !Ref cloudideastarMasterVpc1
   vpc1publicSubnet3:
     Type: AWS::EC2::Subnet
     Properties:
@@ -138,14 +138,14 @@ Resources:
             - - "vpc"
               - !FindInMap [RegionMap, !Ref RegionCode, !Ref AZ1Code]
               - "subnet"
-      VpcId: !Ref kumoribayMasterVpc1
+      VpcId: !Ref cloudideastarMasterVpc1
   vpc1routeTableForPublicSubnets:
     Type: AWS::EC2::RouteTable
     Properties:
       Tags:
         - Key: "Name"
           Value: "vpc1-route-table-publicSubnets"
-      VpcId: !Ref kumoribayMasterVpc1
+      VpcId: !Ref cloudideastarMasterVpc1
   # Associate publicSubnet1 to RouteTable
   publicSubnet1RouteTableAssociation:
     Type: AWS::EC2::SubnetRouteTableAssociation
@@ -174,7 +174,7 @@ Resources:
     Type: AWS::EC2::VPCGatewayAttachment
     Properties:
       InternetGatewayId: !Ref vpc1IGW
-      VpcId: !Ref kumoribayMasterVpc1
+      VpcId: !Ref cloudideastarMasterVpc1
   defaultRouteToIGW:
     Type: AWS::EC2::Route
     Properties:
@@ -182,28 +182,28 @@ Resources:
       GatewayId: !Ref vpc1IGW
       RouteTableId: !Ref vpc1routeTableForPublicSubnets
 Outputs:
-  gritworksMasterVpc1ID: #logicalID
-    Description: "gritworks Master VPC1 ID"
-    Value: !Ref kumoribayMasterVpc1 # the vaule of export is here
+  cloudideastarMasterVpc1: #logicalID
+    Description: "cloudideastar Master VPC1 ID"
+    Value: !Ref cloudideastarMasterVpc1 # the vaule of export is here
     Export:
       Name: !Sub ${AWS::StackName}-VPCID # the name of infra-stack export
   vpc1publicSubnet1ID: #logicalID
-    Description: "gritworks Master VPC1 publicSubnet1 ID"
+    Description: "cloudideastar Master VPC1 publicSubnet1 ID"
     Value: !Ref vpc1publicSubnet2 # the vaule of export is here
     Export:
       Name: !Sub ${AWS::StackName}-publicSubnet1ID # the name of infra-stack export
   vpc1publicSubnet2ID: #logicalID
-    Description: "gritworks Master VPC publicSubnet2 ID"
+    Description: "cloudideastar Master VPC publicSubnet2 ID"
     Value: !Ref vpc1publicSubnet2 # the vaule of export is here
     Export:
       Name: !Sub ${AWS::StackName}-publicSubnet2ID # the name of infra-stack export
   vpc1publicSubnet3ID: #logicalID
-    Description: "gritworks Master VPC publicSubnet3 ID"
+    Description: "cloudideastar Master VPC publicSubnet3 ID"
     Value: !Ref vpc1publicSubnet3 # the vaule of export is here
     Export:
       Name: !Sub ${AWS::StackName}-publicSubnet3ID # the name of infra-stack export
   vpc1routeTableForPublicSubnets: #logicalID
-    Description: "gritworks routeTable ID"
+    Description: "cloudideastar routeTable ID"
     Value: !Ref vpc1routeTableForPublicSubnets # the vaule of export is here
     Export:
       Name: !Sub ${AWS::StackName}-routeTableID # the name of infra-stack export

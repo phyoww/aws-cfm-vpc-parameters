@@ -3,15 +3,15 @@ Parameters:
   vpcsecurityGroupStackName: #ParameterKey
     Description: "Name of your vpc1 Security Group CFN Stack"
     Type: String
-    Default: 'sgpvpc-securitygroup'
+    Default: "sgpvpc-securitygroup"
     AllowedValues:
       - sgpvpc-securitygroup
       - sydvpc-securitygroup
       - tkovpc-securitygroup
   vpcStackName: #ParameterKey
-    Description: 'Name of your VPC CFN Stack'
+    Description: "Name of your VPC CFN Stack"
     Type: String
-    Default: 'sgpvpc'
+    Default: "sgpvpc"
     AllowedValues:
       - sgpvpc
       - sydvpc
@@ -24,7 +24,7 @@ Resources:
       InstanceType: t2.micro
       SubnetId:
         Fn::ImportValue: !Sub ${vpcStackName}-publicSubnet1ID
-      KeyName: kumoribay-master-sg
+      KeyName: cloudideastar-master
       Tags:
         - Key: "Name"
           Value: "vpc1-public-instance-1"
